@@ -10,9 +10,13 @@ The whole game map is contained inside the larger black circle (the "Neverland")
 Each of those areas are also splitted into smaller specific locations.
 ### Ager 
 (1a) Southest Ager
+You will be dropped here at the game's start. The Grand House is also here. You will be taken back to the Grand House after a day if you haven't escaped Ager.
 (1b) Southwest Ager
+A playfield for the children. Contains many interactive objects.
 (1c) Northeast Ager
+There is a part of the high wall that seems climbable here. There is a small forest behind the town landscape.
 (1d) Northwest Ager
+There is a part of the high wall that seems climbable here.
 
 ### Valtameri
 (2a) Inner Valtameri - North
