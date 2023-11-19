@@ -3,6 +3,8 @@ You are a children at Ager orphanage, until one day you discovered the dark trut
 
 There are 3 ways to escape. Each will be written detailedly below.
 
+However, in-game content contains sufficient clue to solve the game on your own. You are encouraged to try to complete the game on your own first, before resorting to this guide.
+
 ## 1. The shortest path: Wall climbing
 You will be captured right away attempting to climb the wall. You must distract the demons and the Mother first.
 - First, search the forest at Northwest Ager for a hidden oil can
