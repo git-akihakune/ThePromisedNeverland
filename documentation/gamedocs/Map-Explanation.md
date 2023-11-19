@@ -9,16 +9,17 @@ The whole game map is contained inside the larger black circle (the "Neverland")
 
 Each of those areas are also splitted into smaller specific locations.
 ### Ager 
-(1a) Southest Ager
-You will be dropped here at the game's start. The Grand House is also here. You will be taken back to the Grand House after a day if you haven't escaped Ager.
+(1a) Southest Ager - "Grand House"
+You will be dropped here at the game's start. You will be taken back to the Grand House by the Mother, after a day, if you haven't escaped Ager.
 (1b) Southwest Ager
 A playfield for the children. Contains many interactive objects.
 (1c) Northeast Ager
 There is a part of the high wall that seems climbable here. There is a small forest behind the town landscape.
 (1d) Northwest Ager
-There is a part of the high wall that seems climbable here.
+Contain many houses. The scenery is almost the same as Northeast Ager, but the area seems to have some secrets.
 
-### Valtameri
+### Valtameri 
+*This content will be added in 2.0 update*
 (2a) Inner Valtameri - North
 (2b) Inner Valtameri - Middle
 (2c) Inner Valtameri - South
@@ -27,6 +28,7 @@ There is a part of the high wall that seems climbable here.
 (2f) Outer Valtameri - North
 
 ### Pako
+*This content will be added in 3.0 update*
 (3a) Demons' Lair
 (3b) Demons' Garrison
 (3c) Demons' Town
