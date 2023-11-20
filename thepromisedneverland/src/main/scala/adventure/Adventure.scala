@@ -2,8 +2,7 @@ package adventure
 
 class Adventure:
 
-  /** the name of the game */
-  val title = "A Forest Adventure"
+  val title = "The Promised Neverland"
 
   private val middle = Area(
     "Forest",
