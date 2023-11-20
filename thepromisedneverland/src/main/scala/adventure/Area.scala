@@ -6,6 +6,7 @@ class Area(var name: String, var description: String):
 
   private val neighbors = Map[String, Area]()
   private val items = Map[String, Item]()
+  private val interactiveObjects = Map[String, InteractiveObject]()
 
   /** Returns the area that can be reached from this area by moving in the given
     * direction. The result is returned in an Option; None is returned if there
@@ -15,6 +16,8 @@ class Area(var name: String, var description: String):
 
   def addItem(item: Item): Unit =
     this.items += item.name -> item
+  def addObject(interactiveObject: InteractiveObject): Unit =
+    this.interactiveObjects += interactiveObject.name -> interactiveObject
   def contains(itemName: String): Boolean =
     items.exists((key, value) => key == itemName)
   def removeItem(itemName: String): Option[Item] =
