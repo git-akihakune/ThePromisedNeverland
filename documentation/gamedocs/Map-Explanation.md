@@ -14,9 +14,9 @@ You will be dropped here at the game's start. You will be taken back to the Gran
 (1b) Southwest Ager
 A playfield for the children. Contains many interactive objects.
 (1c) Northeast Ager
-There is a part of the high wall that seems climbable here. There is a small forest behind the town landscape.
+There is a part of the high wall that is lower than the rest here. There is a small forest behind the town landscape.
 (1d) Northwest Ager
-Contain many houses. The scenery is almost the same as Northeast Ager, but the area seems to have some secrets.
+Contain many houses. The scenery is almost the same as Northeast Ager, but the area seems to have some secrets. There is a mysterious large door towards the west that you are prohibited to go near.
 
 ### Valtameri 
 *This content will be added in 2.0 update*
