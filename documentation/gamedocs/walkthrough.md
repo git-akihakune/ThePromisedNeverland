@@ -1,5 +1,5 @@
 # The Promised Neverland - walkthrough
-You are a children at Ager orphanage, until one day you discovered the dark truth: This orphanage is a farm for brain-devouring demons, and all the children there are the preys. Your single objective is to survive and escape.
+You are a child at Ager orphanage, until one day you discovered the dark truth: This orphanage is a farm for brain-devouring demons, and all the children there are the preys. Your single objective is to survive and escape.
 
 There are 3 ways to escape. Each will be written detailedly below.
 
