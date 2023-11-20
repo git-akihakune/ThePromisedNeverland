@@ -1,117 +1,103 @@
 package adventure
 
+import scala.collection.immutable.Vector
+
 class Adventure:
 
-  /** the name of the game */
-  val title = "A Forest Adventure"
+  val title = "The Promised Neverland"
 
-  private val middle = Area(
-    "Forest",
-    "You are somewhere in the forest. There are a lot of trees here.\nBirds are singing."
+  /* Area settings */
+  private val southeastAger = Area(
+    "SouthEast Ager - Grand House",
+    "The Great Wall blocked your sight towards the south and east.\nThere is a small playground towards the west and a vast area at the north."
   )
-  private val northForest = Area(
-    "Forest",
-    "You are somewhere in the forest. A tangle of bushes blocks further passage north.\nBirds are singing."
+  private val southwestAger = Area(
+    "SouthWest Ager",
+    "A playfield for the children. Contains many interactive objects."
   )
-  private val southForest = Area("Forest", "The forest just goes on and on.")
-  private val clearing = Area(
-    "Forest Clearing",
-    "You are at a small clearing in the middle of forest.\nNearly invisible, twisted paths lead in many directions."
+  private val northeastAger = Area(
+    "NorthEast Ager",
+    "There is a part of the high wall that is lower than the rest here. There is a small forest behind the town landscape."
   )
-  private val tangle = Area(
-    "Tangle of Bushes",
-    "You are in a dense tangle of bushes. It's hard to see exactly where you're going."
+  private val northwestAger = Area(
+    "NorthWest Ager",
+    "Contain many houses. The scenery is almost the same as Northeast Ager, but the area seems to have some secrets. There is a mysterious large door towards the west that you are prohibited to go near."
   )
-  private val home = Area(
-    "Home",
-    "Home sweet home! Now the only thing you need is a working remote control."
-  )
-  private val destination = home
+  
+  private val exits = Vector(northeastAger)
 
-  middle.setNeighbors(
+  southeastAger.setNeighbors(
     Vector(
-      "north" -> northForest,
-      "east" -> tangle,
-      "south" -> southForest,
-      "west" -> clearing
+      "west" -> southwestAger,
+      "north" -> northeastAger
     )
   )
-  northForest.setNeighbors(
-    Vector("east" -> tangle, "south" -> middle, "west" -> clearing)
-  )
-  southForest.setNeighbors(
+  southwestAger.setNeighbors(
     Vector(
-      "north" -> middle,
-      "east" -> tangle,
-      "south" -> southForest,
-      "west" -> clearing
+      "east" -> southeastAger,
+      "north" -> northwestAger
     )
   )
-  clearing.setNeighbors(
+  northeastAger.setNeighbors(
     Vector(
-      "north" -> northForest,
-      "east" -> middle,
-      "south" -> southForest,
-      "west" -> northForest
+      "south" -> southeastAger,
+      "west" -> northwestAger
     )
   )
-  tangle.setNeighbors(
+  northwestAger.setNeighbors(
     Vector(
-      "north" -> northForest,
-      "east" -> home,
-      "south" -> southForest,
-      "west" -> northForest
+      "east" -> northeastAger,
+      "south" -> southeastAger
     )
   )
-  home.setNeighbors(Vector("west" -> tangle))
 
-  // TODO: Uncomment the two lines below. Improve the code so that it places the items in clearing and southForest, respectively.
-  private val battery = Item("battery", "It's a small battery cell. Looks new.")
-  private val remote = Item(
-    "remote",
-    "It's the remote control for your TV.\nWhat it was doing in the forest, you have no idea.\nProblem is, there's no battery."
+  /* Object setting settings */
+  private val oilCan = Item(
+    "oil can",
+    "An old and dirty can filled with refined cooking oil. Seems like someone's attempt at something, but it was never successful."
   )
-  clearing.addItem(battery)
-  southForest.addItem(remote)
+  private val bush = InteractiveObject(
+    "bush",
+    "There are bushes behind the houses."
+  )
+  bush.addItem(oilCan)
+  private val blanket = Item(
+    "a blanket",
+    "There is a white blanket with stains on it. Typical children stuff at an orphanage."
+  )
+  private val tablecloth = Item(
+    "a table cloth",
+    "There is a white table cloth which smells like pumpkin soup. You remember Nikel, the one got adopted right after staining the table cloth."
+  )
+  private val lamp = Item(
+    "a kerosine lamp, still burning",
+    "A kerosine lamp casting a dim light around the room."
+  )
+  northwestAger.addObject(bush)
+  southeastAger.addItem(lamp)
+  southwestAger.addItem(tablecloth)
 
-  /** The character that the player controls in the game. */
-  val player = Player(middle)
+  /* Player settings */
+  val player = Player(southeastAger)
 
-  /** The number of turns that have passed since the start of the game. */
+  /* Game settings */
   var turnCount = 0
+  val timeLimit = 63
 
-  /** The maximum number of turns that this adventure game allows before time
-    * runs out.
-    */
-  val timeLimit = 40
+  // TODO: Complete the following functions
+  def isComplete = turnCount == timeLimit
 
-  /** Determines if the adventure is complete, that is, if the player has won.
-    */
-  def isComplete = this.player.location == this.destination && this.player.has(
-    battery.name
-  ) && this.player.has(remote.name)
-
-  /** Determines whether the player has won, lost, or quit, thereby ending the
-    * game.
-    */
   def isOver =
     this.isComplete || this.player.hasQuit || this.turnCount == this.timeLimit
 
-  /** Returns a message that is to be displayed to the player at the beginning
-    * of the game.
-    */
   def welcomeMessage =
-    "You are lost in the woods. Find your way back home.\n\nBetter hurry, 'cause Scalatut elämät is on real soon now. And you can't miss Scalkkarit, right?"
+    "You are a child at an orphanage named Ager.\nFew days ago, you discovered the dark truth: This orphanage is a farm for brain-devouring demons, and all the children here, including you, are livestocks.\nYour single objective is to survive and escape."
 
-  /** Returns a message that is to be displayed to the player at the end of the
-    * game. The message will be different depending on whether or not the player
-    * has completed their quest.
-    */
   def goodbyeMessage =
     if this.isComplete then "Home at last... and phew, just in time! Well done!"
-    else if this.player.location == this.destination && (!this.player.has(
-        battery.name
-      ) || !this.player.has(remote.name))
+    else if this.exits.contains(this.player.location) && (!this.player.has(
+        oilCan.name
+      ) || !this.player.has(lamp.name))
     then
       "Home sweet home! Now the only thing you need is a working remote control."
     else if this.turnCount == this.timeLimit then
@@ -119,10 +105,6 @@ class Adventure:
     else // game over due to player quitting
       "Quitter!"
 
-  /** Plays a turn by executing the given in-game command, such as “go west”.
-    * Returns a textual report of what happened, or an error message if the
-    * command was unknown. In the latter case, no turns elapse.
-    */
   def playTurn(command: String) =
     val action = Action(command)
     val outcomeReport = action.execute(this.player)
