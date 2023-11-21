@@ -71,7 +71,7 @@ class Adventure:
   )
   private val lamp = Item(
     "lamp",
-    "A kerosine lamp casting a dim light around the room."
+    "A kerosine lamp is casting a dim light around the room."
   )
   northwestAger.addObject(bush)
   southeastAger.addItem(lamp)
