@@ -2,7 +2,7 @@ package adventure
 
 import scala.collection.mutable.Map
 
-class Area(var name: String, var description: String):
+class Area(var name: String, var description: String, val areaArt: String):
 
   private val neighbors = Map[String, Area]()
   private val items = Map[String, Item]()
