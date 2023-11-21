@@ -6,6 +6,7 @@ class Adventure:
 
   val title = "The Promised Neverland"
 
+
   /* Area settings */
   private val southeastAger = Area(
     "SouthEast Ager - Grand House",
@@ -51,6 +52,7 @@ class Adventure:
     )
   )
 
+
   /* Object setting settings */
   private val oil = Item(
     "oil",
@@ -78,33 +80,32 @@ class Adventure:
   southwestAger.addItem(tablecloth)
   southwestAger.addItem(blanket)
 
+
   /* Player settings */
   val player = Player(southeastAger)
+
 
   /* Game settings */
   var turnCount = 0
   val timeLimit = 63
 
-  // TODO: Complete the following functions
-  def isComplete = turnCount == timeLimit
 
-  def isOver =
-    this.isComplete || this.player.hasQuit || this.turnCount == this.timeLimit
+  /* Gameplay settings */
+  def firstRouteComplete: Boolean = 
+    this.exits.contains(this.player.location) && this.player.has(tablecloth.name) && southeastAger.statusIs("burning")
+
+  def isOver: Boolean =
+    this.firstRouteComplete || this.player.hasQuit || this.turnCount == this.timeLimit
 
   def welcomeMessage =
-    "You are a child at an orphanage named Ager.\nFew days ago, you discovered the dark truth: This orphanage is a farm for brain-devouring demons, and all the children here, including you, are livestocks.\nYour single objective is to survive and escape."
+    "You are a child at an orphanage named Ager.\nFew days ago, you discovered the dark truth: This orphanage is a farm for brain-devouring demons, and all the children here, including you, are livestocks.\nYou have 7 days until you are shipped to the demons.\nYour single objective is to survive and escape."
 
-  def goodbyeMessage =
-    if this.isComplete then "Home at last... and phew, just in time! Well done!"
-    else if this.exits.contains(this.player.location) && (!this.player.has(
-        oil.name
-      ) || !this.player.has(lamp.name))
-    then
-      "Home sweet home! Now the only thing you need is a working remote control."
+  def goodbyeMessage: String =
+    if this.firstRouteComplete then "You used the tablecloth as a rope and escaped!\nCongratulation, you are now free.\nThank you for playing The Promised Neverland."
     else if this.turnCount == this.timeLimit then
-      "Oh no! Time's up. Starved of entertainment, you collapse and weep like a child.\nGame over!"
+      "Your time ran out.\nYou have been shipped and your brain eaten by the demons.\nAll your attempts are now futile.\nBut maybe someone more fortunate will be able to escape in the future.\nUntil that day come, rest in piece, my dear child.\n\n[GAME OVER]"
     else // game over due to player quitting
-      "Quitter!"
+      "You remember Mother's teaching: There is no `save` function in life. If you give up, then you have already lost."
 
   def playTurn(command: String) =
     val action = Action(command)
