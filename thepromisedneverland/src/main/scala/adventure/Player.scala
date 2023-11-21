@@ -33,12 +33,6 @@ class Player(startingArea: Area):
       this.inv.remove(itemName)
       s"You drop the ${itemName}."
 
-  def examine(itemName: String): String =
-    if !this.inv.contains(itemName) then
-      "If you want to examine something, you need to pick it up first."
-    else
-      s"You look closely at the ${itemName}.\n${this.inv.apply(itemName).description}"
-
   def get(itemName: String): String =
     if this.currentLocation.contains(itemName) then
       this.inv += (itemName -> this.currentLocation.removeItem(itemName).get)
