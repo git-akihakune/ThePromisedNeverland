@@ -13,7 +13,7 @@ class Adventure:
   )
   private val southwestAger = Area(
     "SouthWest Ager",
-    "A playfield for the children. Contains many interactive objects."
+    "A playfield for the children."
   )
   private val northeastAger = Area(
     "NorthEast Ager",
