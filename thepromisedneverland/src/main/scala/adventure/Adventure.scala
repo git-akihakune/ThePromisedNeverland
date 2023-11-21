@@ -53,7 +53,7 @@ class Adventure:
 
   /* Object setting settings */
   private val oilCan = Item(
-    "oil can",
+    "can",
     "An old and dirty can filled with refined cooking oil. Seems like someone's attempt at something, but it was never successful."
   )
   private val bush = InteractiveObject(
@@ -62,20 +62,21 @@ class Adventure:
   )
   bush.addItem(oilCan)
   private val blanket = Item(
-    "a blanket",
+    "blanket",
     "There is a white blanket with stains on it. Typical children stuff at an orphanage."
   )
   private val tablecloth = Item(
-    "a table cloth",
-    "There is a white table cloth which smells like pumpkin soup. You remember Nikel, the one got adopted right after staining the table cloth."
+    "tablecloth",
+    "There is a white tablecloth which smells like pumpkin soup. You remember Nikel, the one got adopted right after staining the tablecloth."
   )
   private val lamp = Item(
-    "a kerosine lamp, still burning",
+    "lamp",
     "A kerosine lamp casting a dim light around the room."
   )
   northwestAger.addObject(bush)
   southeastAger.addItem(lamp)
   southwestAger.addItem(tablecloth)
+  southwestAger.addItem(blanket)
 
   /* Player settings */
   val player = Player(southeastAger)
