@@ -1,14 +1,14 @@
 package adventure
 
 import scala.collection.mutable.Map
+import scala.collection.immutable.Vector
 
 class Player(startingArea: Area):
 
   private var currentLocation = startingArea
-  private var quitCommandGiven = false              // one-way flag
+  private var quitCommandGiven = false
   private var inv = Map[String, Item]()
 
-  /** Determines if the player has indicated a desire to quit the game. */
   def hasQuit = this.quitCommandGiven
 
   def location = this.currentLocation
@@ -33,12 +33,6 @@ class Player(startingArea: Area):
       this.inv.remove(itemName)
       s"You drop the ${itemName}."
 
-  def examine(itemName: String): String =
-    if !this.inv.contains(itemName) then
-      "If you want to examine something, you need to pick it up first."
-    else
-      s"You look closely at the ${itemName}.\n${this.inv.apply(itemName).description}"
-
   def get(itemName: String): String =
     if this.currentLocation.contains(itemName) then
       this.inv += (itemName -> this.currentLocation.removeItem(itemName).get)
@@ -54,7 +48,24 @@ class Player(startingArea: Area):
     else
       s"You are carrying:\n${this.inv.keys.mkString("\n")}"
 
-  /** Returns a brief description of the player’s state, for debugging purposes. */
+  def search(objectName: String): String =
+    val returningItem = this.currentLocation.getItem(objectName)
+    returningItem match {
+      case Some(item) => {
+        this.inv += (item.name -> item)
+        s"You found ${item.name} hidden in $objectName"
+      }
+      case None => "Literally nothing was found. This place is emptier than your life."
+    }
+
+  def use(objectString: String): String =
+    val usingItems: Vector[String] = objectString.split(" ").toVector
+    if usingItems.forall(item => inv.contains(item)) then
+      // use items
+      usingItems.foreach(this.inv.remove(_))
+      s"You have used your ${usingItems.mkString(", ")} well."
+    else "A rule of life: You cannot use something you don't have."
+
   override def toString = "Now at: " + this.location.name
 
 end Player
