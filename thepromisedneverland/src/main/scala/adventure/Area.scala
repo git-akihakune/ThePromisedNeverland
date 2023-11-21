@@ -54,7 +54,7 @@ class Area(var name: String, var description: String):
   def fullDescription: String =
     val exitList = "\n\nExits available: " + this.neighbors.keys.mkString(" ")
     if items.size >= 1 then
-      val itemsList = "\nYou see here: " + this.items.keys.mkString(" ")
+      val itemsList = "\n" + this.items.values.map(_.description).mkString("\n") + "\n" + this.interactiveObjects.values.map(_.description).mkString("\n")
       this.description + itemsList + exitList
     else this.description + exitList
 
