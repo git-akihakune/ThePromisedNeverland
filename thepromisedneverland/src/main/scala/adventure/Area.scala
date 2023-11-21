@@ -27,39 +27,18 @@ class Area(var name: String, var description: String):
     if this.interactiveObjects.contains(objectName) then 
       this.interactiveObjects(objectName).getItem
     else None
-  /** Adds an exit from this area to the given area. The neighboring area is
-    * reached by moving in the specified direction from this area.
-    */
+
   def setNeighbor(direction: String, neighbor: Area) =
     this.neighbors += direction -> neighbor
 
-  /** Adds exits from this area to the given areas. Calling this method is
-    * equivalent to calling the setNeighbor method on each of the given
-    * direction–area pairs.
-    * @param exits
-    *   contains pairs consisting of a direction and the neighboring area in
-    *   that direction
-    * @see
-    *   [[setNeighbor]]
-    */
   def setNeighbors(exits: Vector[(String, Area)]) =
     this.neighbors ++= exits
 
-  /** Returns a multi-line description of the area as a player sees it. This
-    * includes a basic description of the area as well as information about
-    * exits and items. If there are no items present, the return value has the
-    * form "DESCRIPTION\n\nExits available: DIRECTIONS SEPARATED BY SPACES". If
-    * there are one or more items present, the return value has the form
-    * "DESCRIPTION\nYou see here: ITEMS SEPARATED BY SPACES\n\nExits available:
-    * DIRECTIONS SEPARATED BY SPACES". The items and directions are listed in an
-    * arbitrary order.
-    */
   def fullDescription: String =
     val exitList = "\n\nExits available: " + this.neighbors.keys.mkString(" ")
     val objectList = "\n" + this.items.values.map(_.description).mkString("\n") + "\n" + this.interactiveObjects.values.map(_.description).mkString("\n")
     this.description + objectList + exitList
 
-  /** Returns a single-line description of the area for debugging purposes. */
   override def toString =
     this.name + ": " + this.description.replaceAll("\n", " ").take(150)
 

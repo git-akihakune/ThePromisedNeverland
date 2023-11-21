@@ -5,10 +5,9 @@ import scala.collection.mutable.Map
 class Player(startingArea: Area):
 
   private var currentLocation = startingArea
-  private var quitCommandGiven = false              // one-way flag
+  private var quitCommandGiven = false
   private var inv = Map[String, Item]()
 
-  /** Determines if the player has indicated a desire to quit the game. */
   def hasQuit = this.quitCommandGiven
 
   def location = this.currentLocation
@@ -58,7 +57,6 @@ class Player(startingArea: Area):
       case None => "Literally nothing was found. This place is emptier than your life."
     }
 
-  /** Returns a brief description of the player’s state, for debugging purposes. */
   override def toString = "Now at: " + this.location.name
 
 end Player
