@@ -53,7 +53,7 @@ class Adventure:
 
   /* Object setting settings */
   private val oilCan = Item(
-    "can",
+    "oil can",
     "An old and dirty can filled with refined cooking oil. Seems like someone's attempt at something, but it was never successful."
   )
   private val bush = InteractiveObject(

@@ -48,6 +48,16 @@ class Player(startingArea: Area):
     else
       s"You are carrying:\n${this.inv.keys.mkString("\n")}"
 
+  def search(objectName: String): String =
+    val returningItem = this.currentLocation.getItem(objectName)
+    returningItem match {
+      case Some(item) => {
+        this.inv += (item.name -> item)
+        s"You found ${item.name} hidden in $objectName"
+      }
+      case None => "Literally nothing was found. This place is emptier than your life."
+    }
+
   /** Returns a brief description of the player’s state, for debugging purposes. */
   override def toString = "Now at: " + this.location.name
 

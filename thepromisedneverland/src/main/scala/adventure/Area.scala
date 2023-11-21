@@ -21,9 +21,12 @@ class Area(var name: String, var description: String):
   def contains(itemName: String): Boolean =
     items.exists((key, value) => key == itemName)
   def removeItem(itemName: String): Option[Item] =
-    if this.contains(itemName) then items.remove(itemName)
+    if this.items.contains(itemName) then items.remove(itemName)
     else None
-
+  def getItem(objectName: String): Option[Item] =
+    if this.interactiveObjects.contains(objectName) then 
+      this.interactiveObjects(objectName).getItem
+    else None
   /** Adds an exit from this area to the given area. The neighboring area is
     * reached by moving in the specified direction from this area.
     */
@@ -53,10 +56,8 @@ class Area(var name: String, var description: String):
     */
   def fullDescription: String =
     val exitList = "\n\nExits available: " + this.neighbors.keys.mkString(" ")
-    if items.size >= 1 then
-      val itemsList = "\n" + this.items.values.map(_.description).mkString("\n") + "\n" + this.interactiveObjects.values.map(_.description).mkString("\n")
-      this.description + itemsList + exitList
-    else this.description + exitList
+    val objectList = "\n" + this.items.values.map(_.description).mkString("\n") + "\n" + this.interactiveObjects.values.map(_.description).mkString("\n")
+    this.description + objectList + exitList
 
   /** Returns a single-line description of the area for debugging purposes. */
   override def toString =
