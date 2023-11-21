@@ -14,6 +14,7 @@ class Action(input: String):
     case "grab"      => Some(actor.get(this.modifiers))
     case "drop"      => Some(actor.drop(this.modifiers))
     case "search"    => Some(actor.search(this.modifiers))
+    case "use"       => Some(actor.use(this.modifiers))
     // move commands
     case "go"        => Some(actor.go(this.modifiers))
     case "north"     => Some(actor.go("north"))

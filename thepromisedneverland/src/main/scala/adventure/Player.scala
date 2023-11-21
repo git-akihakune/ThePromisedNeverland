@@ -1,6 +1,7 @@
 package adventure
 
 import scala.collection.mutable.Map
+import scala.collection.immutable.Vector
 
 class Player(startingArea: Area):
 
@@ -56,6 +57,14 @@ class Player(startingArea: Area):
       }
       case None => "Literally nothing was found. This place is emptier than your life."
     }
+
+  def use(objectString: String): String =
+    val usingItems: Vector[String] = objectString.split(" ").toVector
+    if usingItems.forall(item => inv.contains(item)) then
+      // use items
+      usingItems.foreach(this.inv.remove(_))
+      s"You have used your ${usingItems.mkString(", ")} well."
+    else "A rule of life: You cannot use something you don't have."
 
   override def toString = "Now at: " + this.location.name
 
