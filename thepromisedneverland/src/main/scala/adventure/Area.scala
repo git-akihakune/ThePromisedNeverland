@@ -7,12 +7,17 @@ class Area(var name: String, var description: String):
   private val neighbors = Map[String, Area]()
   private val items = Map[String, Item]()
   private val interactiveObjects = Map[String, InteractiveObject]()
+  var status = "normal"
 
   /** Returns the area that can be reached from this area by moving in the given
     * direction. The result is returned in an Option; None is returned if there
     * is no exit in the given direction.
     */
   def neighbor(direction: String) = this.neighbors.get(direction)
+
+  def updateStatus(newStatus: String): Unit =
+    this.status = newStatus
+  def statusIs(comparingStatus: String): Boolean = this.status == comparingStatus
 
   def addItem(item: Item): Unit =
     this.items += item.name -> item
