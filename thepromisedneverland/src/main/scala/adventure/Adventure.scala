@@ -99,6 +99,7 @@ class Adventure:
 
   def welcomeMessage =
     "You are a child at an orphanage named Ager.\nFew days ago, you discovered the dark truth: This orphanage is a farm for brain-devouring demons, and all the children here, including you, are livestocks.\nYou have 7 days until you are shipped to the demons.\nYour single objective is to survive and escape."
+    "[!!!] This game requires a large terminal window to display properly. You are recommended to open this window in full-screen. [!!!]"
 
   def goodbyeMessage: String =
     if this.firstRouteComplete then "You used the tablecloth as a rope and escaped!\nCongratulation, you are now free.\nThank you for playing The Promised Neverland."

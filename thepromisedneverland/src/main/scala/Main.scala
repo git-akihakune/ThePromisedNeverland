@@ -10,6 +10,7 @@ object AdventureTextUI extends App:
 
   private def run() =
     println(this.game.welcomeMessage)
+    println(this.game.warningMessage)
     while !this.game.isOver do
       this.printAreaInfo()
       this.playTurn()
