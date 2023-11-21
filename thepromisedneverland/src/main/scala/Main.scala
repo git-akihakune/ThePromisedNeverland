@@ -8,9 +8,13 @@ object AdventureTextUI extends App:
   private val player = game.player
   this.run()
 
+  private def slowPrint(line: String) =
+    Thread.sleep(200)
+    println(line)
+
   private def run() =
-    println(this.game.welcomeMessage)
-    println(this.game.warningMessage)
+    this.slowPrint(this.game.welcomeMessage)
+    this.slowPrint(this.game.warningMessage)
     while !this.game.isOver do
       this.printAreaInfo()
       this.playTurn()
@@ -18,17 +22,20 @@ object AdventureTextUI extends App:
 
   private def printAreaInfo() =
     val area = this.player.location
-    println(area.areaArt)
-    println("\n\n" + area.name)
-    println("-" * area.name.length)
-    println(area.fullDescription + "\n")
+    
+    Thread.sleep(300) // Increase delay time for ascii art
+    this.slowPrint(area.areaArt)
+
+    this.slowPrint("\n\n" + area.name)
+    this.slowPrint("-" * area.name.length)
+    this.slowPrint(area.fullDescription + "\n")
 
   private def playTurn() =
     println()
     val command = readLine("What do you want to do next?\n> ")
     val turnReport = this.game.playTurn(command)
     if turnReport.nonEmpty then
-      println(turnReport)
+      this.slowPrint(turnReport)
 
 end AdventureTextUI
 
