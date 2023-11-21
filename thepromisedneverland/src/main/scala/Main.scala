@@ -18,6 +18,7 @@ object AdventureTextUI extends App:
 
   private def printAreaInfo() =
     val area = this.player.location
+    println(area.areaArt)
     println("\n\n" + area.name)
     println("-" * area.name.length)
     println(area.fullDescription + "\n")
