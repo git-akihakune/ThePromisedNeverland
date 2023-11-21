@@ -52,15 +52,15 @@ class Adventure:
   )
 
   /* Object setting settings */
-  private val oilCan = Item(
-    "oil can",
+  private val oil = Item(
+    "oil",
     "An old and dirty can filled with refined cooking oil. Seems like someone's attempt at something, but it was never successful."
   )
   private val bush = InteractiveObject(
-    "bush",
+    "bushes",
     "There are bushes behind the houses."
   )
-  bush.addItem(oilCan)
+  bush.addItem(oil)
   private val blanket = Item(
     "blanket",
     "There is a white blanket with stains on it. Typical children stuff at an orphanage."
@@ -97,7 +97,7 @@ class Adventure:
   def goodbyeMessage =
     if this.isComplete then "Home at last... and phew, just in time! Well done!"
     else if this.exits.contains(this.player.location) && (!this.player.has(
-        oilCan.name
+        oil.name
       ) || !this.player.has(lamp.name))
     then
       "Home sweet home! Now the only thing you need is a working remote control."
