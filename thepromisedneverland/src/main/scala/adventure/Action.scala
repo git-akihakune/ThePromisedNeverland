@@ -13,6 +13,7 @@ class Action(input: String):
     case "take"      => Some(actor.get(this.modifiers))
     case "grab"      => Some(actor.get(this.modifiers))
     case "drop"      => Some(actor.drop(this.modifiers))
+    case "examine"   => Some(actor.examine(this.modifiers))
     // move commands
     case "go"        => Some(actor.go(this.modifiers))
     case "north"     => Some(actor.go("north"))
@@ -23,7 +24,6 @@ class Action(input: String):
     case "w"         => Some(actor.go("west"))
     case "east"      => Some(actor.go("east"))
     case "e"         => Some(actor.go("east"))
-    case "examine"   => Some(actor.examine(this.modifiers))
     // inventory commands
     case "inventory" => Some(actor.inventory)
     case "inv"       => Some(actor.inventory)
