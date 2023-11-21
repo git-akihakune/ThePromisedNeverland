@@ -10,19 +10,74 @@ class Adventure:
   /* Area settings */
   private val southeastAger = Area(
     "SouthEast Ager - Grand House",
-    "The Great Wall blocked your sight towards the south and east.\nThere is a small playground towards the west and a vast area at the north."
+    "The Great Wall blocked your sight towards the south and east.\nThere is a small playground towards the west and a vast area at the north.",
+    """
+                                       /\
+                              /\  //\\
+                       /\    //\\///\\\        /\
+                      //\\  ///\////\\\\  /\  //\\
+         /\          /  ^ \/^ ^/^  ^  ^ \/^ \/  ^ \
+        / ^\    /\  / ^   /  ^/ ^ ^ ^   ^\ ^/  ^^  \
+       /^   \  / ^\/ ^ ^   ^ / ^  ^    ^  \/ ^   ^  \       *
+      /  ^ ^ \/^  ^\ ^ ^ ^   ^  ^   ^   ____  ^   ^  \     /|\
+     / ^ ^  ^ \ ^  _\___________________|  |_____^ ^  \   /||o\
+    / ^^  ^ ^ ^\  /______________________________\ ^ ^ \ /|o|||\
+   /  ^  ^^ ^ ^  /________________________________\  ^  /|||||o|\
+  /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||      /||o||||||\
+ / ^   ^   ^    ^  ||___|___||||||||||||___|__|||          | |
+/ ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||oooooooooo| |ooooooo
+ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+    """
   )
   private val southwestAger = Area(
     "SouthWest Ager",
-    "A playfield for the children."
+    "A playfield for the children.",
+    """
+                 o\
+   _________/__\__________
+  |                  - (  |
+ ,'-.                 . `-|
+(____".       ,-.    '   ||
+  |          /\,-\   ,-.  |
+  |      ,-./     \ /'.-\ |
+  |     /-.,\      /     \|
+  |    /     \    ,-.     \
+  |___/_______\__/___\_____\ 
+    """
   )
   private val northeastAger = Area(
     "NorthEast Ager",
-    "There is a part of the high wall that is lower than the rest here. There is a small forest behind the town landscape."
+    "There is a part of the high wall that is lower than the rest here. There is a small forest behind the town landscape.",
+    """
+            _    .  ,   .           .
+    *  / \_ *  / \_      _  *        *   /\'__        *
+      /    \  /    \,   ((        .    _/  /  \  *'.
+ .   /\/\  /\/ :' __ \_  `          _^/  ^/    `--.
+    /    \/  \  _/  \-'\      *    /.' ^_   \_   .'\  *
+  /\  .-   `. \/     \ /==~=-=~=-=-;.  _/ \ -. `_/   \
+ /  `-.__ ^   / .-'.--\ =-=~_=-=~=^/  _ `--./ .-'  `-
+/jgs     `.  / /       `.~-^=-=~=^=.-'      '-._ `._
+    """
   )
   private val northwestAger = Area(
     "NorthWest Ager",
-    "Contain many houses. The scenery is almost the same as Northeast Ager, but the area seems to have some secrets. There is a mysterious large door towards the west that you are prohibited to go near."
+    "Contain many houses. The scenery is almost the same as Northeast Ager, but the area seems to have some secrets. There is a mysterious large door towards the west that you are prohibited to go near.",
+    """
+        .                  .-.    .  _   *     _   .
+           *          /   \     ((       _/ \       *    .
+         _    .   .--'\/\_ \     `      /    \  *    ___
+     *  / \_    _/ ^      \/\'__        /\/\  /\  __/   \ *
+       /    \  /    .'   _/  /  \  *' /    \/  \/ .`'\_/\   .
+  .   /\/\  /\/ :' __  ^/  ^/    `--./.'  ^  `-.\ _    _:\ _
+     /    \/  \  _/  \-' __/.' ^ _   \_   .'\   _/ \ .  __/ \
+   /\  .-   `. \/     \ / -.   _/ \ -. `_/   \ /    `._/  ^  \
+  /  `-.__ ^   / .-'.--'    . /    `--./ .-'  `-.  `-. `.  -  `.
+@/        `.  / /      `-.   /  .-'   / .   .'   \    \  \  .-  \%
+@&8jgs@@%% @)&@&(88&@.-_=_-=_-=_-=_-=_.8@% &@&&8(8%@%8)(8@%8 8%@)%
+@88:::&(&8&&8:::::%&`.~-_~~-~~_~-~_~-~~=.'@(&%::::%@8&8)::&#@8::::
+`::::::8%@@%:::::@%&8:`.=~~-.~~-.~~=..~'8::::::::&@8:::::&8:::::'
+ `::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::.'
+    """
   )
   
   private val exits = Vector(northeastAger)
@@ -99,6 +154,7 @@ class Adventure:
 
   def welcomeMessage =
     "You are a child at an orphanage named Ager.\nFew days ago, you discovered the dark truth: This orphanage is a farm for brain-devouring demons, and all the children here, including you, are livestocks.\nYou have 7 days until you are shipped to the demons.\nYour single objective is to survive and escape."
+  def warningMessage =
     "[!!!] This game requires a large terminal window to display properly. You are recommended to open this window in full-screen. [!!!]"
 
   def goodbyeMessage: String =
