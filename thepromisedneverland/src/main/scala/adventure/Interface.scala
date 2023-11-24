@@ -1,6 +1,6 @@
 package adventure
 
-class Interface:
+class TextInterface:
     def resetTextColor = 
         print(Console.RESET)
 

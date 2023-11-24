@@ -5,7 +5,7 @@ import scala.io.StdIn.*
 object AdventureTextUI extends App:
 
   private val game = Adventure()
-  private val ui = Interface()
+  private val ui = TextInterface()
   private val player = game.player
   this.run()
 
