@@ -175,6 +175,6 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     val action = Action(command)
     val outcomeReport = action.execute(this.player)
     if outcomeReport.isDefined then this.turnCount += 1
-    outcomeReport.getOrElse(s"""Unknown command: "$command".""")
+    outcomeReport.getOrElse(s"""What do you mean by "$command"?""")
 
 end Adventure
