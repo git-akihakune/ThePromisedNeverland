@@ -10,8 +10,9 @@ object AdventureTextUI extends App:
   this.run()
 
   private def run() =
-    ui.slowPrint(this.game.welcomeMessage)
-    ui.slowPrint(this.game.warningMessage)
+    ui.artisticPrint(this.game.welcomeMessage, "cyan")
+    ui.artisticPrint(this.game.warningMessage, "red")
+    ui.resetTextColor
     while !this.game.isOver do
       this.printAreaInfo()
       this.playTurn()
@@ -22,18 +23,18 @@ object AdventureTextUI extends App:
     val time = this.game.timeReport
     val fullDescription = area.name + ", " + time
     
-    ui.slowPrint(area.areaArt, Option(500))
+    ui.artisticPrint(area.areaArt, "white", Option(500))
 
-    ui.slowPrint("\n\n" + fullDescription)
-    ui.slowPrint("-" * fullDescription.length)
-    ui.slowPrint(area.fullDescription + "\n")
+    ui.artisticPrint("\n\n" + fullDescription, "green")
+    ui.artisticPrint("-" * fullDescription.length, "yellow")
+    ui.artisticPrint(area.fullDescription + "\n")
 
   private def playTurn() =
-    println()
-    val command = readLine("What to do next?\n> ")
+    ui.artisticPrint("\nWhat to do next?\n> ", "magenta", noNewline=true)
+    val command = readLine()
     val turnReport = this.game.playTurn(command)
     if turnReport.nonEmpty then
-      ui.slowPrint(turnReport)
+      ui.artisticPrint(turnReport)
 
 end AdventureTextUI
 
