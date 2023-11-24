@@ -145,12 +145,12 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
   val timeLimit = 63
 
   def timeReport: String = 
-    val dayPhase = (turnCount % 3) match {
-      case 0 => "morning"
-      case 1 => "afternoon"
-      case 2 => "evening"
+    val dayPhase = (turnCount % 9) match {
+      case 0 | 1 | 2 => "morning"
+      case 3 | 4 | 5 => "afternoon"
+      case 6 | 7 | 8 => "evening"
     }
-    s"day ${turnCount / 3 + 1}, " + dayPhase
+    s"day ${turnCount / 9 + 1}, " + dayPhase
 
   /* Gameplay settings */
   def firstRouteComplete: Boolean = 
