@@ -12,7 +12,7 @@ class Adventure:
     "SouthEast Ager - Grand House",
     "The Great Wall blocked your sight towards the south and east.\nThere is a small playground towards the west and a vast area at the north.",
     """
-                                       /\
+                                   /\
                               /\  //\\
                        /\    //\\///\\\        /\
                       //\\  ///\////\\\\  /\  //\\
@@ -33,7 +33,7 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     "SouthWest Ager",
     "A playfield for the children.",
     """
-                 o\
+             o\
    _________/__\__________
   |                  - (  |
  ,'-.                 . `-|
@@ -49,7 +49,7 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     "NorthEast Ager",
     "There is a part of the high wall that is lower than the rest here. There is a small forest behind the town landscape.",
     """
-            _    .  ,   .           .
+        _    .  ,   .           .
     *  / \_ *  / \_      _  *        *   /\'__        *
       /    \  /    \,   ((        .    _/  /  \  *'.
  .   /\/\  /\/ :' __ \_  `          _^/  ^/    `--.
@@ -63,7 +63,7 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     "NorthWest Ager",
     "Contain many houses. The scenery is almost the same as Northeast Ager, but the area seems to have some secrets. There is a mysterious large door towards the west that you are prohibited to go near.",
     """
-        .                  .-.    .  _   *     _   .
+    .                  .-.    .  _   *     _   .
            *          /   \     ((       _/ \       *    .
          _    .   .--'\/\_ \     `      /    \  *    ___
      *  / \_    _/ ^      \/\'__        /\/\  /\  __/   \ *
