@@ -144,6 +144,13 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
   var turnCount = 0
   val timeLimit = 63
 
+  def timeReport: String = 
+    val dayPhase = (turnCount % 3) match {
+      case 0 => "morning"
+      case 1 => "afternoon"
+      case 2 => "evening"
+    }
+    s"day ${turnCount / 3 + 1}, " + dayPhase
 
   /* Gameplay settings */
   def firstRouteComplete: Boolean = 

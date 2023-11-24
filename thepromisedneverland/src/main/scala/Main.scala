@@ -22,12 +22,14 @@ object AdventureTextUI extends App:
 
   private def printAreaInfo() =
     val area = this.player.location
+    val time = this.game.timeReport
+    val fullDescription = area.name + ", " + time
     
     Thread.sleep(300) // Increase delay time for ascii art
     this.slowPrint(area.areaArt)
 
-    this.slowPrint("\n\n" + area.name)
-    this.slowPrint("-" * area.name.length)
+    this.slowPrint("\n\n" + fullDescription)
+    this.slowPrint("-" * fullDescription.length)
     this.slowPrint(area.fullDescription + "\n")
 
   private def playTurn() =
