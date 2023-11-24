@@ -34,7 +34,7 @@ object AdventureTextUI extends App:
 
   private def playTurn() =
     println()
-    val command = readLine("What do you want to do next?\n> ")
+    val command = readLine("What to do next?\n> ")
     val turnReport = this.game.playTurn(command)
     if turnReport.nonEmpty then
       this.slowPrint(turnReport)
