@@ -11,7 +11,7 @@ object AdventureTextUI extends App:
   this.run()
 
   private def run() =
-    soundtrack.play("data/audio/neverland-piano.wav")
+    soundtrack.playInLoop("data/audio/neverland-piano.wav", 0)
     ui.artisticPrint(this.game.welcomeMessage, "cyan")
     ui.artisticPrint(this.game.warningMessage, "red")
     ui.resetTextColor
@@ -37,6 +37,7 @@ object AdventureTextUI extends App:
     val turnReport = this.game.playTurn(command)
     if turnReport.nonEmpty then
       ui.artisticPrint(turnReport)
+      soundtrack.stop
 
 end AdventureTextUI
 
