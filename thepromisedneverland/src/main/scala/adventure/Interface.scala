@@ -50,16 +50,33 @@ class TextInterface:
 class Audio:
     import javax.sound.sampled._
 
+    // Template audio file
+    var audioInputStream = AudioSystem.getAudioInputStream(new java.io.File("data/audio/neverland-audio.wav"))
+    val clip = AudioSystem.getClip
+
     def play(audioPath: String): Unit =
         try
-            val audioInputStream = AudioSystem.getAudioInputStream(new java.io.File(audioPath))
-            val clip = AudioSystem.getClip
+            audioInputStream = AudioSystem.getAudioInputStream(new java.io.File(audioPath))
             clip.open(audioInputStream)
             clip.start
-            clip.close
-            audioInputStream.close
         catch
             case e: Exception => println(Console.RED + "[!]Your system does not support audio, so audio playback won't work.[!]")
+
+    def playInLoop(audioPath: String, loop: Int): Unit =
+        try
+            audioInputStream = AudioSystem.getAudioInputStream(new java.io.File(audioPath))
+            clip.open(audioInputStream)
+            clip.start
+            loop match {
+              case 0 => clip.loop(Clip.LOOP_CONTINUOUSLY)
+              case _ => clip.loop(loop)
+            }
+        catch
+            case e: Exception => println(Console.RED + "Cannot loop due to unsupported audio")
+
+    def stop: Unit =
+        clip.stop
+        audioInputStream.stop
 
             
 
