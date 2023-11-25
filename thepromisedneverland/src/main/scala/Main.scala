@@ -5,11 +5,14 @@ import scala.io.StdIn.*
 object AdventureTextUI extends App:
 
   private val game = Adventure()
+  private val ui = TextInterface()
   private val player = game.player
   this.run()
 
   private def run() =
-    println(this.game.welcomeMessage)
+    ui.artisticPrint(this.game.welcomeMessage, "cyan")
+    ui.artisticPrint(this.game.warningMessage, "red")
+    ui.resetTextColor
     while !this.game.isOver do
       this.printAreaInfo()
       this.playTurn()
@@ -17,16 +20,21 @@ object AdventureTextUI extends App:
 
   private def printAreaInfo() =
     val area = this.player.location
-    println("\n\n" + area.name)
-    println("-" * area.name.length)
-    println(area.fullDescription + "\n")
+    val time = this.game.timeReport
+    val fullDescription = area.name + ", " + time
+    
+    ui.artisticPrint(area.areaArt, "white", Option(500))
+
+    ui.artisticPrint("\n\n" + fullDescription, "green")
+    ui.artisticPrint("-" * fullDescription.length, "yellow")
+    ui.artisticPrint(area.fullDescription + "\n")
 
   private def playTurn() =
-    println()
-    val command = readLine("Command: ")
+    ui.artisticPrint("\nWhat to do next?\n> ", "magenta", noNewline=true)
+    val command = readLine()
     val turnReport = this.game.playTurn(command)
     if turnReport.nonEmpty then
-      println(turnReport)
+      ui.artisticPrint(turnReport)
 
 end AdventureTextUI
 

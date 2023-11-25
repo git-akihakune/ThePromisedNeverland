@@ -16,7 +16,7 @@ class Player(startingArea: Area):
   def go(direction: String) =
     val destination = this.location.neighbor(direction)
     this.currentLocation = destination.getOrElse(this.currentLocation)
-    if destination.isDefined then "You go " + direction + "." else "You can't go " + direction + "."
+    if destination.isDefined then "You went " + direction + "." else "You can't go " + direction + "."
 
   def rest() =
     "You rest for a while. Better get a move on, though."
