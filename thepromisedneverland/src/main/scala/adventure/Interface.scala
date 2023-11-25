@@ -51,7 +51,7 @@ class Audio:
     import javax.sound.sampled._
 
     // Template audio file
-    var audioInputStream = AudioSystem.getAudioInputStream(new java.io.File("data/audio/neverland-audio.wav"))
+    var audioInputStream = AudioSystem.getAudioInputStream(new java.io.File("data/audio/neverland-piano.wav"))
     val clip = AudioSystem.getClip
 
     def play(audioPath: String): Unit =
@@ -72,7 +72,7 @@ class Audio:
               case _ => clip.loop(loop)
             }
         catch
-            case e: Exception => println(Console.RED + "Cannot loop due to unsupported audio")
+            case e: Exception => println(Console.RED + "[!]Your system does not support audio, so audio playback won't work.[!]")
 
     def stop: Unit =
         clip.close
