@@ -45,3 +45,14 @@ class TextInterface:
     def underlinedText(content: String): String = Console.UNDERLINED + content
     def boldText(content: String): String = Console.BOLD + content
     def blinkText(content: String): String = Console.BLINK + content
+
+
+class Audio:
+    import javax.sound.sampled._
+
+    def play(audioPath: String) =
+        val audioInputStream = AudioSystem.getAudioInputStream(new java.io.File(audioPath))
+        val clip = AudioSystem.getClip
+        clip.open(audioInputStream)
+        clip.start
+
