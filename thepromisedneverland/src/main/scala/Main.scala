@@ -37,7 +37,9 @@ object AdventureTextUI extends App:
     val turnReport = this.game.playTurn(command)
     if turnReport.nonEmpty then
       ui.artisticPrint(turnReport)
-      soundtrack.stop
+      if this.player.currentLocation ==  game.northeastAger then
+        soundtrack.stop
+        soundtrack.play("data/audio/neverland-piano.wav", 0)
 
 end AdventureTextUI
 
