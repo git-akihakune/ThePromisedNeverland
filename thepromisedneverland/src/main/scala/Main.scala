@@ -39,7 +39,7 @@ object AdventureTextUI extends App:
       ui.artisticPrint(turnReport)
       if this.player.currentLocation ==  game.northeastAger then
         soundtrack.stop
-        soundtrack.play("data/audio/neverland-piano.wav", 0)
+        soundtrack.play("data/audio/neverland-piano.wav")
 
 end AdventureTextUI
 
