@@ -75,8 +75,8 @@ class Audio:
             case e: Exception => println(Console.RED + "Cannot loop due to unsupported audio")
 
     def stop: Unit =
-        clip.stop
-        audioInputStream.stop
+        clip.close
+        audioInputStream.close
 
             
 
