@@ -5,9 +5,9 @@ import scala.collection.immutable.Vector
 
 class Player(startingArea: Area):
 
-  private var currentLocation = startingArea
+  var currentLocation = startingArea
+  var inv = Map[String, Item]()
   private var quitCommandGiven = false
-  private var inv = Map[String, Item]()
 
   def hasQuit = this.quitCommandGiven
 
