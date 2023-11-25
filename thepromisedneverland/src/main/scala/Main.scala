@@ -7,11 +7,9 @@ object AdventureTextUI extends App:
   private val game = Adventure()
   private val ui = TextInterface()
   private val player = game.player
-  private val soundtrack = Audio()
   this.run()
 
   private def run() =
-    soundtrack.play("data/audio/neverland-piano.wav")
     ui.artisticPrint(this.game.welcomeMessage, "cyan")
     ui.artisticPrint(this.game.warningMessage, "red")
     ui.resetTextColor
