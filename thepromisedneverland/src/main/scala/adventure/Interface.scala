@@ -50,9 +50,16 @@ class TextInterface:
 class Audio:
     import javax.sound.sampled._
 
-    def play(audioPath: String) =
-        val audioInputStream = AudioSystem.getAudioInputStream(new java.io.File(audioPath))
-        val clip = AudioSystem.getClip
-        clip.open(audioInputStream)
-        clip.start
+    def play(audioPath: String): Unit =
+        try
+            val audioInputStream = AudioSystem.getAudioInputStream(new java.io.File(audioPath))
+            val clip = AudioSystem.getClip
+            clip.open(audioInputStream)
+            clip.start
+            clip.close
+            audioInputStream.close
+        catch
+            case e: Exception => println(Console.RED + "[!]Your system does not support audio, so audio playback won't work.[!]")
+
+            
 
