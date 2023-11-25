@@ -8,7 +8,7 @@ class Adventure:
 
 
   /* Area settings */
-  private val southeastAger = Area(
+  val southeastAger = Area(
     "SouthEast Ager - Grand House",
     "The Great Wall blocked your sight towards the south and east.\nThere is a small playground towards the west and a vast area at the north.",
     """
@@ -29,7 +29,7 @@ class Adventure:
 ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     """
   )
-  private val southwestAger = Area(
+  val southwestAger = Area(
     "SouthWest Ager",
     "A playfield for the children.",
     """
@@ -45,7 +45,7 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
   |___/_______\__/___\_____\ 
     """
   )
-  private val northeastAger = Area(
+  val northeastAger = Area(
     "NorthEast Ager",
     "There is a part of the high wall that is lower than the rest here. There is a small forest behind the town landscape.",
     """
@@ -59,7 +59,7 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 /jgs     `.  / /       `.~-^=-=~=^=.-'      '-._ `._
     """
   )
-  private val northwestAger = Area(
+  val northwestAger = Area(
     "NorthWest Ager",
     "Contain many houses. The scenery is almost the same as Northeast Ager, but the area seems to have some secrets. There is a mysterious large door towards the west that you are prohibited to go near.",
     """
@@ -80,7 +80,7 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     """
   )
   
-  private val exits = Vector(northeastAger)
+  val exits = Vector(northeastAger)
 
   southeastAger.setNeighbors(
     Vector(
@@ -109,24 +109,24 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
 
   /* Object setting settings */
-  private val oil = Item(
+  val oil = Item(
     "oil",
     "An old and dirty can filled with refined cooking oil. Seems like someone's attempt at something, but it was never successful."
   )
-  private val bush = InteractiveObject(
+  val bush = InteractiveObject(
     "bushes",
     "There are bushes behind the houses."
   )
   bush.addItem(oil)
-  private val blanket = Item(
+  val blanket = Item(
     "blanket",
     "There is a white blanket with stains on it. Typical children stuff at an orphanage."
   )
-  private val tablecloth = Item(
+  val tablecloth = Item(
     "tablecloth",
     "There is a white tablecloth which smells like pumpkin soup. You remember Nikel, the one got adopted right after staining the tablecloth."
   )
-  private val lamp = Item(
+  val lamp = Item(
     "lamp",
     "A kerosine lamp is casting a dim light around the room."
   )
