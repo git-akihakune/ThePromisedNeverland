@@ -29,11 +29,16 @@ class Action(input: String):
     case "get"       => Some(actor.get(this.modifiers))
     case "take"      => Some(actor.get(this.modifiers))
     case "grab"      => Some(actor.get(this.modifiers))
+    case "fetch"     => Some(actor.get(this.modifiers))
     case "drop"      => Some(actor.drop(this.modifiers))
+    case "remove"    => Some(actor.drop(this.modifiers))
+    case "trash"     => Some(actor.drop(this.modifiers))
     case "search"    => Some(actor.search(this.modifiers))
     case "use"       => Some(actor.use(this.modifiers))
+    case "utilize"   => Some(actor.use(this.modifiers))
     // move commands
     case "go"        => Some(actor.go(this.modifiers))
+    case "move"      => Some(actor.go(this.modifiers))
     case "north"     => Some(actor.go("north"))
     case "n"         => Some(actor.go("north"))
     case "south"     => Some(actor.go("south"))
@@ -46,9 +51,15 @@ class Action(input: String):
     case "inventory" => Some(actor.inventory)
     case "inv"       => Some(actor.inventory)
     case "i"         => Some(actor.inventory)
+    case "storage"   => Some(actor.inventory)
+    case "bag"       => Some(actor.inventory)
+    case "b"         => Some(actor.inventory)
     // quit commands
     case "quit"      => Some(actor.quit())
     case "q"         => Some(actor.quit())
+    case "giveup"    => Some(actor.quit())
+    case "forfeit"   => Some(actor.quit())
+    case "die"       => Some(actor.quit())
     // help command
     case "help"      => Some(this.helpText)
     case "h"         => Some(this.helpText)
@@ -59,6 +70,7 @@ class Action(input: String):
     case "rest"      => Some(actor.rest())
     case "jump"      => Some("Are you proud of yourself?")
     case "shout"     => Some("Aaaarrrrgggghhhh!")
+    case "whoami"    => Some("You think, therefore you are.")
     case other       => None
 
   /** Returns a textual description of the action object, for debugging purposes. */
