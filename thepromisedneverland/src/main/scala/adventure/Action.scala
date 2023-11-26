@@ -7,6 +7,23 @@ class Action(input: String):
   private val verb        = commandText.takeWhile( _ != ' ' )
   private val modifiers   = commandText.drop(verb.length).trim
 
+  private val helpText = 
+  """
+  You are an orphan at Ager. You discovered the truth behind this demon's brain farm. You are now escaping, and you have these options:
+    take <item name>        Pick up an item near by.
+    drop <item name>        Throw an item away.
+    search <object name>    Take a closer look into something.
+    use <item name>         Use an item.
+    go <direction>          Go into that direction.
+    north/west/south/east   Shorthand for move commands.
+    inventory               Check on what you're having.
+    help                    Print this help message.
+    rest                    Lazing around for a while.
+    shout                   Vent out all the anger in your stomach.
+  
+  The game will try its best to understand you, so you may or may not need this help message much.
+  """
+
   def execute(actor: Player): Option[String] = this.verb match
     // item commands
     case "get"       => Some(actor.get(this.modifiers))
@@ -32,7 +49,10 @@ class Action(input: String):
     // quit commands
     case "quit"      => Some(actor.quit())
     case "q"         => Some(actor.quit())
-    // TODO: Add help command
+    // help command
+    case "help"      => Some(this.helpText)
+    case "h"         => Some(this.helpText)
+    case "how"       => Some(this.helpText)
     // other commands
     case ""          => Some("I beg you pardon?")
     case "neverland" => Some("The land of dreams, turned into nightmares.")
