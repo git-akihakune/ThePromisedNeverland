@@ -158,7 +158,7 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
   /* Gameplay settings */
   def firstRouteComplete: Boolean = 
-    this.exits.contains(this.player.location) && this.player.has(tablecloth.name) && southeastAger.statusIs("burning")
+    this.exits.contains(this.player.location) && this.player.location.statusIs("climbed") && southeastAger.statusIs("burning")
 
   def isOver: Boolean =
     this.firstRouteComplete || this.player.hasQuit || this.turnCount == this.timeLimit
