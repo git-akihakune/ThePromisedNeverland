@@ -2,12 +2,11 @@ package adventure
 
 import scala.collection.mutable.Map
 
-class Area(var name: String, var description: String, val areaArt: String):
+class Area(var name: String, var description: String, val areaArt: String, var status: String):
 
   private val neighbors = Map[String, Area]()
   private val items = Map[String, Item]()
   private val interactiveObjects = Map[String, InteractiveObject]()
-  var status = "normal"
 
   /** Returns the area that can be reached from this area by moving in the given
     * direction. The result is returned in an Option; None is returned if there
