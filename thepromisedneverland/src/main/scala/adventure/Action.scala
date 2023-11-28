@@ -7,20 +7,70 @@ class Action(input: String):
   private val verb        = commandText.takeWhile( _ != ' ' )
   private val modifiers   = commandText.drop(verb.length).trim
 
-  /** Causes the given player to take the action represented by this object, assuming
-    * that the command was understood. Returns a description of what happened as a result
-    * of the action (such as “You go west.”). The description is returned in an `Option`
-    * wrapper; if the command was not recognized, `None` is returned. */
+  private val helpText = 
+  """
+  You are an orphan at Ager. You discovered the truth behind this demon's brain farm. You are now escaping, and you have these options:
+    take <item name>        Pick up an item near by.
+    drop <item name>        Throw an item away.
+    search <object name>    Take a closer look into something.
+    use <item name>         Use an item.
+    go <direction>          Go into that direction.
+    north/west/south/east   Shorthand for move commands.
+    inventory               Check on what you're having.
+    help                    Print this help message.
+    rest                    Lazing around for a while.
+    shout                   Vent out all the anger in your stomach.
+  
+  The game will try its best to understand you, so you may or may not need this help message much.
+  """
+
   def execute(actor: Player): Option[String] = this.verb match
-    case "go"        => Some(actor.go(this.modifiers))
-    case "rest"      => Some(actor.rest())
-    case "xyzzy"     => Some("The grue tastes yummy.")
-    case "quit"      => Some(actor.quit())
+    // item commands
     case "get"       => Some(actor.get(this.modifiers))
-    case "examine"   => Some(actor.examine(this.modifiers))
+    case "take"      => Some(actor.get(this.modifiers))
+    case "grab"      => Some(actor.get(this.modifiers))
+    case "fetch"     => Some(actor.get(this.modifiers))
     case "drop"      => Some(actor.drop(this.modifiers))
-    // case "has"       => Some(actor.has(this.modifiers))
+    case "remove"    => Some(actor.drop(this.modifiers))
+    case "trash"     => Some(actor.drop(this.modifiers))
+    case "search"    => Some(actor.search(this.modifiers))
+    case "use"       => Some(actor.use(this.modifiers))
+    case "utilize"   => Some(actor.use(this.modifiers))
+    // move commands
+    case "go"        => Some(actor.go(this.modifiers))
+    case "move"      => Some(actor.go(this.modifiers))
+    case "north"     => Some(actor.go("north"))
+    case "n"         => Some(actor.go("north"))
+    case "south"     => Some(actor.go("south"))
+    case "s"         => Some(actor.go("south"))
+    case "west"      => Some(actor.go("west"))
+    case "w"         => Some(actor.go("west"))
+    case "east"      => Some(actor.go("east"))
+    case "e"         => Some(actor.go("east"))
+    // inventory commands
     case "inventory" => Some(actor.inventory)
+    case "inv"       => Some(actor.inventory)
+    case "i"         => Some(actor.inventory)
+    case "storage"   => Some(actor.inventory)
+    case "bag"       => Some(actor.inventory)
+    case "b"         => Some(actor.inventory)
+    // quit commands
+    case "quit"      => Some(actor.quit())
+    case "q"         => Some(actor.quit())
+    case "giveup"    => Some(actor.quit())
+    case "forfeit"   => Some(actor.quit())
+    case "die"       => Some(actor.quit())
+    // help command
+    case "help"      => Some(this.helpText)
+    case "h"         => Some(this.helpText)
+    case "how"       => Some(this.helpText)
+    // other commands
+    case ""          => Some("I beg you pardon?")
+    case "neverland" => Some("The land of dreams, turned into nightmares.")
+    case "rest"      => Some(actor.rest())
+    case "jump"      => Some("Are you proud of yourself?")
+    case "shout"     => Some("Aaaarrrrgggghhhh!")
+    case "whoami"    => Some("You think, therefore you are.")
     case other       => None
 
   /** Returns a textual description of the action object, for debugging purposes. */
