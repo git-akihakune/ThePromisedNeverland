@@ -27,7 +27,8 @@ class Adventure:
  / ^   ^   ^    ^  ||___|___||||||||||||___|__|||          | |
 / ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||oooooooooo| |ooooooo
 ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-    """
+    """,
+    "normal"
   )
   private val southwestAger = Area(
     "SouthWest Ager",
@@ -43,7 +44,8 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
   |     /-.,\      /     \|
   |    /     \    ,-.     \
   |___/_______\__/___\_____\ 
-    """
+    """,
+    "normal"
   )
   private val northeastAger = Area(
     "NorthEast Ager",
@@ -57,7 +59,8 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
   /\  .-   `. \/     \ /==~=-=~=-=-;.  _/ \ -. `_/   \
  /  `-.__ ^   / .-'.--\ =-=~_=-=~=^/  _ `--./ .-'  `-
 /jgs     `.  / /       `.~-^=-=~=^=.-'      '-._ `._
-    """
+    """,
+    "climbable"
   )
   private val northwestAger = Area(
     "NorthWest Ager",
@@ -77,7 +80,8 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 @88:::&(&8&&8:::::%&`.~-_~~-~~_~-~_~-~~=.'@(&%::::%@8&8)::&#@8::::
 `::::::8%@@%:::::@%&8:`.=~~-.~~-.~~=..~'8::::::::&@8:::::&8:::::'
  `::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::.'
-    """
+    """,
+    "normal"
   )
   
   private val exits = Vector(northeastAger)
@@ -154,7 +158,7 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
   /* Gameplay settings */
   def firstRouteComplete: Boolean = 
-    this.exits.contains(this.player.location) && this.player.has(tablecloth.name) && southeastAger.statusIs("burning")
+    this.exits.contains(this.player.location) && this.player.location.statusIs("climbed") && southeastAger.statusIs("burning")
 
   def isOver: Boolean =
     this.firstRouteComplete || this.player.hasQuit || this.turnCount == this.timeLimit

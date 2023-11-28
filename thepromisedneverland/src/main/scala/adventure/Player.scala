@@ -60,10 +60,23 @@ class Player(startingArea: Area):
 
   def use(objectString: String): String =
     val usingItems: Vector[String] = objectString.split(" ").toVector
+
+    def affectArea(currentStatus: String, updatedStatus: String, returnedText: String) =
+      if this.currentLocation.statusIs(currentStatus) then
+        this.currentLocation.updateStatus(updatedStatus)
+        usingItems.foreach(this.inv.remove(_))
+        returnedText
+      else "For what?"
+
     if usingItems.forall(item => inv.contains(item)) then
-      // use items
-      usingItems.foreach(this.inv.remove(_))
-      s"You have used your ${usingItems.mkString(", ")} well."
+      val action: String = objectString match {
+        case "tablecloth" => affectArea("climbable", "climbed", "You can now climb the wall!")
+        case "oil lamp" => affectArea("normal", "burning", "The area has been drowned in fierce flame!")
+        case "lamp oil" => affectArea("normal", "burning", "The area has been drowned in fierce flame!")
+        case "blanket" => affectArea("burning", "normal", "You successsfully put out the fire...")
+        case otheritem => s"However, there is time and space for everything, and it's not time to use the $otheritem yet."
+      }
+      s"You have used your ${usingItems.mkString(", ")} well. $action"
     else "A rule of life: You cannot use something you don't have."
 
   override def toString = "Now at: " + this.location.name
