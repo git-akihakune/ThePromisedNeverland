@@ -140,6 +140,15 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
   southwestAger.addItem(blanket)
 
 
+  /* NPC setting */
+  val npcAnna = SimpleNPC(
+    "Anna", 
+    "Anna is watching everything silently.",
+    "I wonder what has been troubling Chris so much..."
+  )
+
+  southwestAger.addSimpleNPC(npcAnna)
+
   /* Player settings */
   val player = Player(southeastAger)
 
