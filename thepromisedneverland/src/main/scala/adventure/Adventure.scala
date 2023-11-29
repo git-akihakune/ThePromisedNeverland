@@ -49,7 +49,7 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
   )
   private val northeastAger = Area(
     "NorthEast Ager",
-    "There is a part of the high wall that is lower than the rest here. There is a small forest behind the town landscape.",
+    "There is a part of the high wall that is lower than the rest here.",
     """
         _    .  ,   .           .
     *  / \_ *  / \_      _  *        *   /\'__        *
@@ -64,7 +64,7 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
   )
   private val northwestAger = Area(
     "NorthWest Ager",
-    "Contain many houses. The scenery is almost the same as Northeast Ager, but the area seems to have some secrets. There is a mysterious large door towards the west that you are prohibited to go near.",
+    "Contain many houses. The scenery is almost the same as Northeast Ager, but the area seems to have some secrets.",
     """
     .                  .-.    .  _   *     _   .
            *          /   \     ((       _/ \       *    .
@@ -121,10 +121,9 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     "bushes",
     "There are bushes behind the houses."
   )
-  bush.addItem(oil)
   private val blanket = Item(
     "blanket",
-    "There is a white blanket with stains on it. Typical children stuff at an orphanage."
+    "There is a white blanket hanging with stains on it. Typical children stuff at an orphanage."
   )
   private val tablecloth = Item(
     "tablecloth",
@@ -134,10 +133,87 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     "lamp",
     "A kerosine lamp is casting a dim light around the room."
   )
+  private val diary = Item(
+    "diary",
+    "Someone's diary is wide-opening on the desk. You caught a glimpse of it written: \"Tried to climb the walls, failed. Need to distract the demons first. How?\""
+  )
+  private val scroll = Item(
+    "scroll",
+    "A leather scroll from someone is lying there, written only one word: \"Burn\"."
+  )
+  private val slide = InteractiveObject(
+    "slide",
+    "Some children are playing with a slide."
+  )
+  private val book = Item(
+    "book",
+    "There is a book on the grass, titled \"Conquer the walls: how to climb any surfaces using household items as ropes.\""
+  )
+  private val knife = Item(
+    "knife",
+    "A very sharp knife is lying on the dinner table."
+  )
+  private val forest = InteractiveObject(
+    "forest",
+    "There is a small forest behind the town landscape."
+  )
+  private val woodenCabin = InteractiveObject(
+    "cabin",
+    "A wooden cabin silently stands in the vastness of this area."
+  )
+  private val flowerField = InteractiveObject(
+    "field",
+    "A flower field basks among the grass."
+  )
+  private val flower = Item(
+    "flower",
+    "A beautiful wild flower."
+  )
+  private val toyBox = InteractiveObject(
+    "box",
+    "There is a large toy box with various things inside."
+  )
+  private val coat = Item(
+    "coat",
+    "A black adult coat is being hanged on the wall."
+  )
+  private val watergun = Item(
+    "watergun",
+    "A watergun which shoot out drops. Effective against children, not very effective against human-eating demons."
+  )
+  private val glasses = Item(
+    "glasses",
+    "A pair of glasses, which a child may have no need to use."
+  )
+  private val teaCup = Item(
+    "cup",
+    "There is a cup with some leftover tea on the dinning table."
+  )
+  private val greatDoor = InteractiveObject(
+    "door",
+    "There is a mysterious large door towards the west that you are prohibited to go near."
+  )
+  
+  toyBox.addItem(glasses)
+  toyBox.addItem(watergun)
+  bush.addItem(oil)
+  flowerField.addItem(flower)
+  southeastAger.addItem(coat)
+  southeastAger.addObject(toyBox)
   northwestAger.addObject(bush)
   southeastAger.addItem(lamp)
   southwestAger.addItem(tablecloth)
   southwestAger.addItem(blanket)
+  southeastAger.addItem(diary)
+  northwestAger.addItem(scroll)
+  southwestAger.addObject(slide)
+  northwestAger.addItem(book)
+  southeastAger.addItem(knife)
+  northeastAger.addObject(forest)
+  northeastAger.addObject(woodenCabin)
+  northeastAger.addObject(flowerField)
+  southeastAger.addItem(teaCup)
+  northwestAger.addObject(greatDoor)
 
 
   /* Player settings */
@@ -160,8 +236,11 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
   def firstRouteComplete: Boolean = 
     this.exits.contains(this.player.location) && this.player.location.statusIs("climbed") && southeastAger.statusIs("burning")
 
+  def firstRouteFailed: Boolean = 
+    this.exits.contains(this.player.location) && this.player.location.statusIs("climbed") && !southeastAger.statusIs("burning")
+
   def isOver: Boolean =
-    this.firstRouteComplete || this.player.hasQuit || this.turnCount == this.timeLimit
+    this.firstRouteComplete || this.firstRouteFailed || this.player.hasQuit || this.turnCount == this.timeLimit
 
   def welcomeMessage =
     "You are a child at an orphanage named Ager.\nFew days ago, you discovered the dark truth: This orphanage is a farm for brain-devouring demons, and all the children here, including you, are livestocks.\nYou have 7 days until you are shipped to the demons.\nYour single objective is to survive and escape."
@@ -170,6 +249,7 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
   def goodbyeMessage: String =
     if this.firstRouteComplete then "You used the tablecloth as a rope and escaped!\nCongratulation, you are now free.\nThank you for playing The Promised Neverland."
+    else if this.firstRouteFailed then "The demons noticed your attempt to escape!\nYou have been captured by the demons.\nYou have been shipped and your brain eaten by the demons.\nAll your attempts are now futile.\nBut maybe someone more fortunate will be able to escape in the future.\nUntil that day come, rest in piece, my dear child.\n\n[GAME OVER]"
     else if this.turnCount == this.timeLimit then
       "Your time ran out.\nYou have been shipped and your brain eaten by the demons.\nAll your attempts are now futile.\nBut maybe someone more fortunate will be able to escape in the future.\nUntil that day come, rest in piece, my dear child.\n\n[GAME OVER]"
     else // game over due to player quitting
