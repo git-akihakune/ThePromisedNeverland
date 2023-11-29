@@ -7,6 +7,7 @@ class Area(var name: String, var description: String, val areaArt: String, var s
   private val neighbors = Map[String, Area]()
   private val items = Map[String, Item]()
   private val interactiveObjects = Map[String, InteractiveObject]()
+  private val NPC = Map[String, SimpleNPC]()
 
   /** Returns the area that can be reached from this area by moving in the given
     * direction. The result is returned in an Option; None is returned if there
@@ -22,6 +23,8 @@ class Area(var name: String, var description: String, val areaArt: String, var s
     this.items += item.name -> item
   def addObject(interactiveObject: InteractiveObject): Unit =
     this.interactiveObjects += interactiveObject.name -> interactiveObject
+  def addSimpleNPC(npc: SimpleNPC): Unit =
+    this.NPC += npc.name -> npc
   def contains(itemName: String): Boolean =
     items.exists((key, value) => key == itemName)
   def removeItem(itemName: String): Option[Item] =
@@ -41,7 +44,8 @@ class Area(var name: String, var description: String, val areaArt: String, var s
   def fullDescription: String =
     val exitList = "\n\nExits available: " + this.neighbors.keys.mkString(" ")
     val objectList = "\n" + this.items.values.map(_.description).mkString("\n") + "\n" + this.interactiveObjects.values.map(_.description).mkString("\n")
-    this.description + objectList + exitList
+    val npcList = "\n" + this.NPC.values.map(_.description).mkString("\n")
+    this.description + objectList + npcList + exitList
 
   override def toString =
     this.name + ": " + this.description.replaceAll("\n", " ").take(150)
