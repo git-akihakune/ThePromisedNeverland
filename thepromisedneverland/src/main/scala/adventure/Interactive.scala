@@ -26,3 +26,11 @@ class InteractiveObject(val name: String, val description: String):
   override def toString = this.name
 
 end InteractiveObject
+
+
+class SimpleNPC(val name: String, val description: String, val line: String):
+  def talk = line
+
+  override def toString = this.name
+
+end SimpleNPC
